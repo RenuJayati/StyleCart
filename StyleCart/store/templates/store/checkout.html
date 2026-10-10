@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | StyleCart</title>
+
+    <link rel="stylesheet" href="{% static 'store/css/checkout.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+        StyleCart
+    </div>
+
+    <a
+        href="{% url 'cart' %}"
+        class="back"
+    >
+        ← Back to Cart
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- CUSTOMER DETAILS -->
+
+    <div class="box">
+
+        <h2>
+            🛍️ Checkout
+        </h2>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <label>
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                name="customer_name"
+                placeholder="Enter your full name"
+                required
+            >
+
+
+            <label>
+                Mobile Number
+            </label>
+
+            <input
+                type="tel"
+                name="mobile"
+                placeholder="Enter mobile number"
+                maxlength="15"
+                required
+            >
+
+
+            <label>
+                Address
+            </label>
+
+            <textarea
+                name="address"
+                placeholder="Enter your complete address"
+                required
+            ></textarea>
+
+
+            <label>
+                City
+            </label>
+
+            <input
+                type="text"
+                name="city"
+                placeholder="Enter your city"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="place-order"
+            >
+                Place Order
+            </button>
+
+        </form>
+
+    </div>
+
+
+
+    <!-- ORDER SUMMARY -->
+
+    <div class="box">
+
+        <h2>
+            Order Summary
+        </h2>
+
+
+        {% for item in products %}
+
+        <div class="order-item">
+
+            <div>
+
+                <strong>
+                    {{ item.product.name }}
+                </strong>
+
+                <br>
+
+                <small>
+                    Qty: {{ item.quantity }}
+                </small>
+
+            </div>
+
+
+            <div class="item-price">
+                ₹{{ item.item_total }}
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+
+        <div class="total">
+
+            <span>
+                Total
+            </span>
+
+            <span>
+                ₹{{ total }}
+            </span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

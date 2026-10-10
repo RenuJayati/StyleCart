@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cart | StyleCart</title>
+
+    <link rel="stylesheet" href="{% static 'store/css/cart.css' %}">
+
+
+
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+        StyleCart
+    </div>
+
+    <a
+        href="{% url 'home' %}"
+        class="back"
+    >
+        ← Continue Shopping
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    {% if products %}
+
+
+    <!-- CART ITEMS -->
+
+    <div class="box">
+
+        <h2>
+            🛒 Your Cart
+        </h2>
+
+
+        {% for item in products %}
+
+
+        <div class="cart-item">
+
+
+            <div class="product-info">
+
+                <strong>
+                    {{ item.product.name }}
+                </strong>
+
+                <div class="category">
+                    {{ item.product.category }}
+                </div>
+
+                <div class="price">
+                    ₹{{ item.item_total }}
+                </div>
+
+            </div>
+
+
+            <!-- QUANTITY -->
+
+            <div class="quantity">
+
+                <a
+                    href="{% url 'decrease_cart' item.product.id %}"
+                    class="qty-btn"
+                >
+                    −
+                </a>
+
+                <span>
+                    {{ item.quantity }}
+                </span>
+
+                <a
+                    href="{% url 'increase_cart' item.product.id %}"
+                    class="qty-btn"
+                >
+                    +
+                </a>
+
+            </div>
+
+
+            <!-- REMOVE -->
+
+            <a
+                href="{% url 'remove_from_cart' item.product.id %}"
+                class="remove"
+            >
+                Remove
+            </a>
+
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+
+    <!-- ORDER SUMMARY -->
+
+    <div class="box">
+
+        <h2>
+            Order Summary
+        </h2>
+
+
+        <div class="summary-row">
+
+            <span>
+                Items
+            </span>
+
+            <span>
+                {{ products|length }}
+            </span>
+
+        </div>
+
+
+        <div class="total">
+
+            <span>
+                Total
+            </span>
+
+            <span>
+                ₹{{ total }}
+            </span>
+
+        </div>
+
+
+        <a
+            href="{% url 'checkout' %}"
+            class="checkout"
+        >
+            Proceed to Checkout
+        </a>
+
+
+        <a
+            href="{% url 'home' %}"
+            class="continue"
+        >
+            Continue Shopping
+        </a>
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- EMPTY CART -->
+
+    <div class="box empty">
+
+        <div class="empty-icon">
+            🛒
+        </div>
+
+        <h2>
+            Your Cart is Empty
+        </h2>
+
+        <p>
+            Looks like you haven't added anything yet.
+        </p>
+
+        <a
+            href="{% url 'home' %}"
+            class="checkout"
+        >
+            Start Shopping
+        </a>
+
+    </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+</body>
+
+</html>

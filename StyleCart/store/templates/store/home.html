@@ -1,0 +1,457 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StyleCart | Fashion & Lifestyle</title>
+
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+
+
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <a href="{% url 'home' %}" class="logo">
+        StyleCart
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="#products">
+            Products
+        </a>
+
+        <a href="#categories">
+            Categories
+        </a>
+
+        <a href="{% url 'contact' %}">
+            Contact
+        </a>
+
+
+        <form
+            method="GET"
+            action="{% url 'home' %}#products"
+            class="search-form"
+        >
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search products..."
+                value="{{ search_query }}"
+            >
+
+            <button type="submit">
+                🔍
+            </button>
+
+        </form>
+
+
+        <a
+            href="{% url 'cart' %}"
+            class="cart-btn"
+        >
+            🛒 Cart
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            NEW SEASON
+        </div>
+
+
+        <h1>
+            Trendy Fashion
+            <br>
+            <span>For Every You</span>
+        </h1>
+
+
+        <p>
+            Explore stylish collections for men and women,
+            everyday essentials and more.
+        </p>
+
+
+        <a
+            href="#categories"
+            class="shop-btn"
+        >
+            Shop Now →
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<section
+    class="category-section"
+    id="categories"
+>
+
+    <div class="section-heading">
+
+        <h2>
+            Shop by Category
+        </h2>
+
+        <p>
+            Explore our collections
+        </p>
+
+    </div>
+
+
+    <div class="category-grid">
+
+
+        <!-- WOMEN -->
+
+        <a
+            href="{% url 'home' %}?category=Women#products"
+            class="category-card"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=600&q=80"
+                alt="Women Fashion"
+            >
+
+            <div class="category-name">
+
+                Women
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- MEN -->
+
+        <a
+            href="{% url 'home' %}?category=Men#products"
+            class="category-card"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?auto=format&fit=crop&w=600&q=80"
+                alt="Men Fashion"
+            >
+
+            <div class="category-name">
+
+                Men
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- FOOTWEAR -->
+
+        <a
+            href="{% url 'home' %}?category=Footwear#products"
+            class="category-card"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
+                alt="Footwear"
+            >
+
+            <div class="category-name">
+
+                Footwear
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- BAGS -->
+
+        <a
+            href="{% url 'home' %}?category=Bags#products"
+            class="category-card"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80"
+                alt="Bags"
+            >
+
+            <div class="category-name">
+
+                Bags
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- BEAUTY -->
+
+        <a
+            href="{% url 'home' %}?category=Beauty#products"
+            class="category-card"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80"
+                alt="Beauty"
+            >
+
+            <div class="category-name">
+
+                Beauty
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- WATCHES -->
+
+        <a
+            href="{% url 'home' %}?category=Watches#products"
+            class="category-card"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80"
+                alt="Watches"
+            >
+
+            <div class="category-name">
+
+                Watches
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section
+    class="products-section"
+    id="products"
+>
+
+    <div class="section-heading">
+
+        <h2>
+            Featured Products
+        </h2>
+
+        <p>
+            Our latest products
+        </p>
+
+    </div>
+
+
+    <div class="products">
+
+
+        {% for product in products %}
+
+
+           <a href="{% url 'product_detail' product.id %}" class="product-card">
+
+            {% if product.image %}
+
+                <img
+                    src="{{ product.image }}"
+                    alt="{{ product.name }}"
+                    class="product-image"
+                >
+
+            {% else %}
+
+                <div
+                    class="product-image"
+                    style="
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        background:#e9ebe5;
+                        font-size:60px;
+                    "
+                >
+                    🛍️
+                </div>
+
+            {% endif %}
+
+
+
+            <div class="product-info">
+
+                <h3>
+                    {{ product.name }}
+                </h3>
+
+
+                <div class="product-category">
+                    {{ product.category }}
+                </div>
+
+
+                <div class="price">
+                    ₹{{ product.price }}
+                </div>
+
+
+                <a
+                    href="{% url 'add_to_cart' product.id %}"
+                    class="add-cart"
+                >
+                    Add to Cart
+                </a>
+
+            </div>
+
+        </a>
+
+
+        {% empty %}
+
+
+        <div class="empty-products">
+
+            <h3>
+                No products found.
+            </h3>
+
+            <p>
+                Try searching for another product.
+            </p>
+
+        </div>
+
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CONTACT ================= -->
+
+<section
+    class="contact-section"
+    id="contact"
+>
+
+    <h2>
+        Contact StyleCart
+    </h2>
+
+    <p>
+        Have a question about our products or orders?
+    </p>
+
+    <p>
+        Feel free to get in touch with us.
+    </p>
+
+    <p>
+        📧 stylecart@example.com
+    </p>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h3>
+        StyleCart
+    </h3>
+
+    <p>
+        Fashion & Lifestyle Store
+    </p>
+
+    <p>
+        © 2026 StyleCart. All rights reserved.
+    </p>
+
+</footer>
+
+
+</body>
+</html>

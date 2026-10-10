@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | StyleCart</title>
+
+    <link rel="stylesheet" href="{% static 'store/css/contact.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+        StyleCart
+    </div>
+
+    <a
+        href="{% url 'home' %}"
+        class="home-btn"
+    >
+        ← Home
+    </a>
+
+</div>
+
+
+<!-- CONTACT -->
+
+<div class="contact-box">
+
+    <h1>
+        Contact Us
+    </h1>
+
+
+   <form method="POST">
+    {% csrf_token %}
+
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Enter your name" required>
+
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Enter your email" required>
+
+    <label>Message</label>
+    <textarea name="message" placeholder="Enter your message" required></textarea>
+
+    <button type="submit">Send Message</button>
+</form>
+
+</div>
+
+
+</body>
+
+</html>

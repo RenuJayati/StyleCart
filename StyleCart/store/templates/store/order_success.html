@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Success | StyleCart</title>
+
+<link rel="stylesheet" href="{% static 'store/css/order_success.css' %}">
+</head>
+
+<body>
+
+
+<div class="navbar">
+
+    <div class="logo">
+        StyleCart
+    </div>
+
+    <a href="{% url 'home' %}" class="home-btn">
+        Home
+    </a>
+
+</div>
+
+
+<div class="container">
+
+    <div class="box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>
+            Order Placed Successfully!
+        </h1>
+
+        <p class="message">
+            Thank you for shopping with StyleCart.
+            Your order has been received.
+        </p>
+
+
+        <div class="details">
+
+            <div class="detail">
+                <span>Order ID</span>
+                <span>#{{ order.id }}</span>
+            </div>
+
+            <div class="detail">
+                <span>Customer</span>
+                <span>{{ order.customer_name }}</span>
+            </div>
+
+            <div class="detail">
+                <span>City</span>
+                <span>{{ order.city }}</span>
+            </div>
+
+            <div class="detail">
+                <span>Total Amount</span>
+                <span>₹{{ order.total_amount }}</span>
+            </div>
+
+        </div>
+
+
+        <a href="{% url 'home' %}" class="shop-btn">
+            Continue Shopping
+        </a>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
